@@ -4,6 +4,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
+from kivy.properties import StringProperty
 
 class ButtonsLayout(GridLayout):
     INSTANCES = []
@@ -27,7 +28,13 @@ class ButtonsLayout(GridLayout):
             self.buttons[alphabet] = button
 
 class MyRoot(BoxLayout):
-    pass
+    HANGMAN_IMG = StringProperty()
+    def __init__(self, **kwargs):
+        super(MyRoot, self).__init__(**kwargs)
+        self.start_game()
+    def start_game(self):
+        self.HANGMAN_IMG = "images/hangman0.png"
+
 
 class Hangman(App):
     def build(self):
