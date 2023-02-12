@@ -7,7 +7,6 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
 from words import WORDS
-
 class ButtonsLayout(GridLayout):
     INSTANCES = []
 
@@ -37,11 +36,14 @@ class MyRoot(BoxLayout):
     def __init__(self, **kwargs):
         super(MyRoot, self).__init__(**kwargs)
         self.RANDOM_WORD = ""
-        self.GUESSES = []  
+        self.GUESSES = []
         self.buttons_layout = ButtonsLayout.INSTANCES[0]
         self.configure_buttons()
         self.start_game()
     
+    @property
+    def won(self):
+        return all(alphabet in self.GUESSES for alphabet in self.RANDOM_WORD)
     def update_word_display(self):
         WORD_DISPLAY = []
         for alphabet in self.RANDOM_WORD:
@@ -50,7 +52,7 @@ class MyRoot(BoxLayout):
             else:
                 WORD_DISPLAY.append("_")
         self.WORD_DISPLAY = " ".join(WORD_DISPLAY)
-
+    
     def btn_press(self, widget):
         widget.disabled = True
         self.GUESSES.append(widget.text)
@@ -63,8 +65,11 @@ class MyRoot(BoxLayout):
                     button.disabled = True
                 self.GAME_MSG = "You Won!!!"
         else:
-            self.GAME_MSG = "GAME OVER!!!"
-            self.WORD_DISPLAY = self.RANDOM_WORD
+            if self.won:
+                for button in self.buttons_layout.buttons.values():
+                    button.disabled = True
+                self.GAME_MSG = "GAME OVER!!!"
+                self.WORD_DISPLAY = self.RANDOM_WORD
 
     def configure_buttons(self):
         for button in self.buttons_layout.buttons.values():
@@ -77,10 +82,8 @@ class MyRoot(BoxLayout):
         self.GAME_MSG = "Guess the word"
         self.WORD_DISPLAY = " ".join(["_" for _ in self.RANDOM_WORD])
 
-
 class Hangman(App):
     def build(self):
         return MyRoot()
 
-if __name__ == "__main__":
-    Hangman().run()
+Hangman().run()
