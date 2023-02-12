@@ -25,6 +25,13 @@ class ButtonsLayout(GridLayout):
             )
             self.add_widget(button)
             self.buttons[alphabet] = button
-            
+
 class MyRoot(BoxLayout):
     pass
+
+class Hangman(App):
+    def build(self):
+        return MyRoot()
+
+if __name__ == "__main__":
+    Hangman().run()
