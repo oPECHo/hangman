@@ -37,6 +37,7 @@ class MyRoot(BoxLayout):
     def __init__(self, **kwargs):
         super(MyRoot, self).__init__(**kwargs)
         self.RANDOM_WORD = ""
+        self.GUESSES = []
         self.button_layout = ButtonsLayout.INSTANCES[0]
         self.start_game()
     
@@ -48,6 +49,22 @@ class MyRoot(BoxLayout):
             else:
                 WORD_DISPLAY.append("_")
         self.WORD_DISPLAY = " ".join(WORD_DISPLAY)
+
+    def btn_press(self, widget):
+        widget.disabled = True
+        self.GUESSES.append(widget.text)
+
+        if widget.text in self.RANDOM_WORD:
+            self.update_word_display()
+
+            if self.won:
+                for button in self.buttons_layout.buttons.values():
+                    button.disabled = True
+                self.GAME_MSG = "You Won!!!"
+        else:
+            self.GAME_MSG = "GAME OVER!!!"
+            self.WORD_DISPLAY = self.RANDOM_WORD
+
 
     def start_game(self):
         self.RANDOM_WORD = random.choice(WORDS)
