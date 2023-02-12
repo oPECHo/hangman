@@ -39,6 +39,16 @@ class MyRoot(BoxLayout):
         self.RANDOM_WORD = ""
         self.button_layout = ButtonsLayout.INSTANCES[0]
         self.start_game()
+    
+    def update_word_display(self):
+        WORD_DISPLAY = []
+        for alphabet in self.RANDOM_WORD:
+            if alphabet in self.GUESSES:
+                WORD_DISPLAY.append(alphabet)
+            else:
+                WORD_DISPLAY.append("_")
+        self.WORD_DISPLAY = " ".join(WORD_DISPLAY)
+
     def start_game(self):
         self.RANDOM_WORD = random.choice(WORDS)
         self.ERRORS = "0"
