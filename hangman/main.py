@@ -65,6 +65,7 @@ class MyRoot(BoxLayout):
                     button.disabled = True
                 self.GAME_MSG = "You Won!!!"
         else:
+            self.ERRORS = str(int(self.ERRORS) + 1)
             if self.won:
                 for button in self.buttons_layout.buttons.values():
                     button.disabled = True
