@@ -8,6 +8,19 @@
         color: 0, 1, 0, 1
         color: 0, 1, 0, 1
 
+    BoxLayout:
+        size_hint: 1, 0.5
+
+        Label:
+            size_hint: 0.25, 1
+
+        Label:
+            text: "ERRORS: " + root.ERRORS
+            font_name: "fonts/Plaguard.otf"
+            font_size: 32
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 1
+
     Image:
         source: root.HANGMAN_IMG
         size_hint: 1, 2

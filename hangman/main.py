@@ -28,6 +28,7 @@ class ButtonsLayout(GridLayout):
             self.buttons[alphabet] = button
 
 class MyRoot(BoxLayout):
+    ERRORS = StringProperty()
     HANGMAN_IMG = StringProperty()
     GAME_MSG = StringProperty()
     def __init__(self, **kwargs):
@@ -35,6 +36,7 @@ class MyRoot(BoxLayout):
         self.button_layout = ButtonsLayout.INSTANCES[0]
         self.start_game()
     def start_game(self):
+        self.ERRORS = "0"
         self.HANGMAN_IMG = "images/hangman0.png"
         self.GAME_MSG = "Guess the word"
 
