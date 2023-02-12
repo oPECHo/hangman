@@ -79,6 +79,7 @@ class MyRoot(BoxLayout):
 
     def start_game(self):
         self.RANDOM_WORD = random.choice(WORDS)
+        self.GUESSES.clear()
         self.ERRORS = "0"
         self.HANGMAN_IMG = "images/hangman0.png"
         self.GAME_MSG = "Guess the word"
@@ -91,4 +92,6 @@ class Hangman(App):
     def build(self):
         return MyRoot()
 
-Hangman().run()
+if __name__ == "__main__":
+    Hangman().run()
+
