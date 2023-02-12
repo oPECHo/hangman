@@ -67,7 +67,7 @@ class MyRoot(BoxLayout):
         else:
             self.ERRORS = str(int(self.ERRORS) + 1)
             self.HANGMAN_IMG = "images/hangman" + self.ERRORS + ".png"
-            if self.won:
+            if int(self.ERRORS) == 7:
                 for button in self.buttons_layout.buttons.values():
                     button.disabled = True
                 self.GAME_MSG = "GAME OVER!!!"
