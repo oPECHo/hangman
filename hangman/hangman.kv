@@ -1,3 +1,21 @@
+<HomeScreen>:
+    GridLayout:
+        cols: 1
+        size_hint: 0.6, 0.7
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        Image:
+            source: 'images/logo.png'
+            size_hint: 10, 10      
+        Button:
+            id: start_game_button
+            text: "Start Game"
+            font_size: 20
+            font_name: "fonts/Plaguard.otf"
+            font_color:(1,0,0,1)
+            size_hint: 0.1, 0.4
+            bold: True
+            background_color: '#000000'
+
 <MyRoot>:
     orientation: "vertical"
 

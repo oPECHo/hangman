@@ -7,6 +7,11 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
 from words import WORDS
+from kivy.uix.screenmanager import Screen
+
+class HomeScreen(Screen):
+    pass
+
 class ButtonsLayout(GridLayout):
     INSTANCES = []
 
@@ -90,7 +95,7 @@ class MyRoot(BoxLayout):
 
 class Hangman(App):
     def build(self):
-        return MyRoot()
+        return HomeScreen()
 
 if __name__ == "__main__":
     Hangman().run()
