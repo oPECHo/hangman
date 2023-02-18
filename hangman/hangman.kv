@@ -50,12 +50,25 @@
             color: 0, 1, 0, 1
             size_hint: 0.5, 1
 
-        Button:
-            text: "Restart"
-            font_size: 24
-            font_name: "fonts/Plaguard.otf"
-            size_hint: 0.25, 1
-            on_press: root.start_game()
+        GridLayout:
+            cols: 1
+            size_hint: 0.15, 1.5
+            Button:
+                text: "Restart"
+                font_size: 24
+                font_name: "fonts/Plaguard.otf"
+                size_hint: 0.25, 1
+                on_press: root.start_game()
+
+            Button:
+                text: "Rest"
+                font_size: 24
+                font_name: "fonts/Plaguard.otf"
+                size_hint: 0.25, 1
+                on_press: 
+                    root.exit()
+                    root.start_game()
+
 
 
     Image:
