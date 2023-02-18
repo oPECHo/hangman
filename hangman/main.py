@@ -72,13 +72,14 @@ class MyRoot(BoxLayout):
 
         if widget.text in self.RANDOM_WORD:
             self.update_word_display()
-
+            self.SCORE = str(int(self.SCORE) + 5)
             if self.won:
                 for button in self.buttons_layout.buttons.values():
                     button.disabled = True
                 self.GAME_MSG = "You Won!!!"
         else:
             self.ERRORS = str(int(self.ERRORS) + 1)
+            self.SCORE = str(int(self.SCORE) - 1)
             self.HANGMAN_IMG = "images/hangman" + self.ERRORS + ".png"
             if int(self.ERRORS) == 7:
                 for button in self.buttons_layout.buttons.values():
