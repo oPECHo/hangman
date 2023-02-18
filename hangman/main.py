@@ -7,7 +7,13 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
 from words import WORDS
-from kivy.uix.screenmanager import Screen
+from kivy.uix.screenmanager import Screen, ScreenManager, RiseInTransition
+
+class PlayGameScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    def on_pre_enter(self):
+        self.add_widget(MyRoot())
 
 class HomeScreen(Screen):
     pass
@@ -95,7 +101,11 @@ class MyRoot(BoxLayout):
 
 class Hangman(App):
     def build(self):
-        return HomeScreen()
+        self.sm = ScreenManager(transition = RiseInTransition())
+        self.sm.add_widget(HomeScreen(name="Home"))
+        self.sm.add_widget(PlayGameScreen(name="Game"))
+        return self.sm
+
 
 if __name__ == "__main__":
     Hangman().run()
