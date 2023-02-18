@@ -41,6 +41,7 @@ class ButtonsLayout(GridLayout):
 
 class MyRoot(BoxLayout):
     ERRORS = StringProperty()
+    SCORE = StringProperty()
     HANGMAN_IMG = StringProperty()
     GAME_MSG = StringProperty()
     WORD_DISPLAY = StringProperty()
@@ -48,6 +49,7 @@ class MyRoot(BoxLayout):
         super(MyRoot, self).__init__(**kwargs)
         self.RANDOM_WORD = ""
         self.GUESSES = []
+        self.SCORE = "0"
         self.buttons_layout = ButtonsLayout.INSTANCES[0]
         self.configure_buttons()
         self.start_game()
@@ -92,6 +94,7 @@ class MyRoot(BoxLayout):
         self.RANDOM_WORD = random.choice(WORDS)
         self.GUESSES.clear()
         self.ERRORS = "0"
+        self.SCORE = "0"
         self.HANGMAN_IMG = "images/hangman0.png"
         self.GAME_MSG = "Guess the word"
         self.WORD_DISPLAY = " ".join(["_" for _ in self.RANDOM_WORD])
